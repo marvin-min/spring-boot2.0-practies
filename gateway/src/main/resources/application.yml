@@ -11,18 +11,30 @@ zuul:
     key-prefix: demo-app
     repository: REDIS
     behind-proxy: true
-    default-policy:
-      limit: 2
-      quota: 1000
-      refresh-interval: 60
-      type:
-        - user
-        - origin
-        - url
+#    default-policy-list:
+#      - limit: 2
+#        quota: 1000
+#        refresh-interval: 120
+#        type:
+#          - user
+#          - origin
+#          - url
+    policy-list:
+      api-a:
+        - limit: 2
+          quota: 1000
+          refresh-interval: 120
+          type:
+            - user
+            - origin
+            - url
   routes:
     api-a:
       path: /api/a/**
       url: forward:/
+    api-b:
+      path: /api/b/**
+      url: forward:/b
 spring:
   redis:
     database: 6
