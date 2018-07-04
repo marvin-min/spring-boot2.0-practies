@@ -9,6 +9,7 @@ zuul:
   ratelimit:
     enabled: true
     key-prefix: demo-app
+    repository: REDIS
     behind-proxy: true
     default-policy:
       limit: 2
@@ -22,3 +23,15 @@ zuul:
     api-a:
       path: /api/a/**
       url: forward:/
+spring:
+  redis:
+    database: 6
+    host: 60.205.219.176
+    port: 6390
+    password: Jlm4Temnn0awl
+    jedis:
+      pool:
+        max-idle: 10
+        min-idle: 1
+        max-wait: 60s
+    timeout: 20s
