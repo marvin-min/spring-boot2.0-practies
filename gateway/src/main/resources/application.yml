@@ -1,0 +1,24 @@
+server:
+  port: 9999
+http:
+  basic:
+    user: test
+    password: test
+    
+zuul:
+  ratelimit:
+    enabled: true
+    key-prefix: demo-app
+    behind-proxy: true
+    default-policy:
+      limit: 2
+      quota: 1000
+      refresh-interval: 60
+      type:
+        - user
+        - origin
+        - url
+  routes:
+    api-a:
+      path: /api/a/**
+      url: forward:/
